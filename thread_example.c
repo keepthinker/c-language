@@ -15,6 +15,7 @@ int main()
   int s2 = 3;
   pthread_create(&tid2, NULL, cancelThread, &tid);
   pthread_join(tid, NULL);
+  pthread_detach(tid2);
   printf("finish\n");
   return 0;
 }
