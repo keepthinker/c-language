@@ -4,9 +4,8 @@
 #include <netinet/in.h>
 #include <strings.h>
 #include<string.h>
-#define LISTENQ 3
+#define LISTENQ 1024
 #define MAXLINE 10
-//void echo(int connfd);
 
 int open_listenfd(int port);
 void printf_carr_int(char *arr, int len);
@@ -49,6 +48,7 @@ int main(int argc, char **argv)
         client_message[read_size -2] = 0;  //for telnet
         printf("\nhuman readable response: %s, actual size: %d\n", client_message, read_size);
     }
+    printf("close connfd: %d", connfd);
     close(connfd);
   }
 }
@@ -84,15 +84,3 @@ int open_listenfd(int port)
   return listenfd;
 
 }
-/*
-void echo(int connfd)
-{
-  size_t n;
-  char buf[MAXLINE];
-  
-  while((n = readline(connfd, buf, MAXLINE)) != 0) {
-    printf("server received %d bytes\n", n);
-    write(connfd, buf, n);
-  }
-}
-*/
